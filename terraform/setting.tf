@@ -1,6 +1,12 @@
 terraform {
   required_version = ">=1.1.9"
 
+  backend "s3" {
+    bucket = "mryhryki"
+    region = "us-east-1"
+    key    = "terraform/example-ecspresso/terraform.tfstate"
+  }
+
   required_providers {
     aws = {
       source = "hashicorp/aws"
@@ -9,7 +15,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "ap-northeast-1"
+  region = "us-east-1"
 }
 
 data "aws_caller_identity" "current" {}
