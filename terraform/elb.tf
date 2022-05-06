@@ -5,10 +5,11 @@ resource "aws_lb" "example_ecspresso" {
 }
 
 resource "aws_lb_target_group" "example_ecspresso" {
-  name     = "example-ecspresso-group1"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = aws_vpc.example_ecspresso.id
+  name        = "example-ecspresso-group1"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = aws_vpc.example_ecspresso.id
+  target_type = "ip"
 }
 
 resource "aws_lb_listener" "example_ecspresso" {

@@ -19,7 +19,10 @@ provider "aws" {
 }
 
 data "aws_caller_identity" "current" {}
-
 locals {
   aws_account_id = data.aws_caller_identity.current.account_id
+}
+
+output "endpoint-url" {
+  value = "http://${aws_lb.example_ecspresso.dns_name}/"
 }
