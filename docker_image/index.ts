@@ -1,7 +1,7 @@
 import { Server, Handler } from "https://deno.land/std@0.138.0/http/server.ts";
 import { version } from "./version.ts";
 
-const PORT = 8080;
+const PORT = 80;
 
 const handler: Handler = async (request) => {
   console.log("Request:", request.method, request.url);

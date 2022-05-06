@@ -23,23 +23,16 @@ resource "aws_ecs_task_definition" "example_ecspresso" {
 
   container_definitions = jsonencode([
     {
-      name   = "example_ecspresso_task_1"
-      image  = "${aws_ecrpublic_repository.example_ecspresso.repository_uri}:latest"
-      cpu    = 256
-      memory = 512
+      name  = "example_ecspresso_task_1"
+      image = "${aws_ecrpublic_repository.example_ecspresso.repository_uri}:latest"
       portMappings = [
         {
-          containerPort = 8080
-          hostPort      = 8080
+          containerPort = 80
+          hostPort      = 80
         }
       ]
     }
   ])
-
-  runtime_platform {
-    operating_system_family = "LINUX"
-    cpu_architecture        = "X86_64"
-  }
 }
 
 resource "aws_ecs_service" "example_ecspresso" {
@@ -48,14 +41,17 @@ resource "aws_ecs_service" "example_ecspresso" {
   desired_count   = 1
   task_definition = aws_ecs_task_definition.example_ecspresso.arn
   launch_type     = "FARGATE"
+  depends_on      = [aws_lb_listener_rule.example_ecspresso]
 
   network_configuration {
-    subnets = [aws_subnet.example_ecspresso_1.id, aws_subnet.example_ecspresso_2.id]
+    subnets          = [aws_subnet.example_ecspresso_1.id, aws_subnet.example_ecspresso_2.id]
+    security_groups  = [aws_security_group.example_ecspresso.id]
+    assign_public_ip = true
   }
 
   load_balancer {
     target_group_arn = aws_lb_target_group.example_ecspresso.arn
     container_name   = "example_ecspresso_task_1"
-    container_port   = 8080
+    container_port   = 80
   }
 }
