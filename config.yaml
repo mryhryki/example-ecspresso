@@ -1,0 +1,6 @@
+region: us-east-1
+cluster: example_ecspresso
+service: example_ecspresso_service
+service_definition: ecs-service-def.json
+task_definition: ecs-task-def.json
+timeout: 10m0s

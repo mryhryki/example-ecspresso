@@ -1,0 +1,41 @@
+{
+  "deploymentConfiguration": {
+    "deploymentCircuitBreaker": {
+      "enable": false,
+      "rollback": false
+    },
+    "maximumPercent": 200,
+    "minimumHealthyPercent": 100
+  },
+  "desiredCount": 1,
+  "enableECSManagedTags": false,
+  "enableExecuteCommand": false,
+  "healthCheckGracePeriodSeconds": 0,
+  "launchType": "FARGATE",
+  "loadBalancers": [
+    {
+      "containerName": "example_ecspresso_task_1",
+      "containerPort": 80,
+      "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:644989259572:targetgroup/example-ecspresso-group1/911b2ca2e12f22cf"
+    }
+  ],
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "assignPublicIp": "ENABLED",
+      "securityGroups": [
+        "sg-001d0ee8a90781e85"
+      ],
+      "subnets": [
+        "subnet-00ec3d36a41e1b5fa",
+        "subnet-012ada75b126e7a9a"
+      ]
+    }
+  },
+  "placementConstraints": [],
+  "placementStrategy": [],
+  "platformFamily": "Linux",
+  "platformVersion": "LATEST",
+  "schedulingStrategy": "REPLICA",
+  "serviceRegistries": [],
+  "tags": []
+}
