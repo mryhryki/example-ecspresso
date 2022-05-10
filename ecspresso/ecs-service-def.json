@@ -16,18 +16,18 @@
     {
       "containerName": "example_ecspresso_task_1",
       "containerPort": 80,
-      "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:644989259572:targetgroup/example-ecspresso-group1/911b2ca2e12f22cf"
+      "targetGroupArn": "{{ tfstate `aws_lb_target_group.example_ecspresso.arn` }}"
     }
   ],
   "networkConfiguration": {
     "awsvpcConfiguration": {
       "assignPublicIp": "ENABLED",
       "securityGroups": [
-        "sg-001d0ee8a90781e85"
+        "{{ tfstate `aws_security_group.example_ecspresso.id` }}"
       ],
       "subnets": [
-        "subnet-00ec3d36a41e1b5fa",
-        "subnet-012ada75b126e7a9a"
+        "{{ tfstate `aws_subnet.example_ecspresso_1.id` }}",
+        "{{ tfstate `aws_subnet.example_ecspresso_2.id` }}"
       ]
     }
   },

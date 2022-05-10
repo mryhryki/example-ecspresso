@@ -1,5 +1,7 @@
 terraform/.terraform/**
-terraform/*.tfstate
+terraform/.terraform.tfstate.lock.info
+terraform/*.tfstate*
 
 docker_image/version.ts
+
 ecspresso/.env
