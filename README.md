@@ -2,7 +2,7 @@
 
 [ecspresso](https://github.com/kayac/ecspresso) の動作を確認するためのリポジトリです。
 
-## Setup environment
+## Setup environment by terraform
 
 AWS環境を作ります。
 
@@ -21,19 +21,19 @@ $ cd docker_image/
 $ ./build_and_push_image.sh
 ```
 
-## Deploy
+## Deploy by ecspresso
 
 ```shell
 $ ./ecspresso/deploy.sh
 ```
 
-## Rollback
+## Rollback by ecspresso
 
 ```shell
 $ ./ecspresso/rollback.sh
 ```
 
-## Destroy environment
+## Destroy environment by terraform
 
 ```shell
 # イメージが残っているとECR Publicリポジトリの削除に失敗するので、先にCLIで消しておきます。
