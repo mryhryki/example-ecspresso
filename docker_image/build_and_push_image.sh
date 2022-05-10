@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 THIS_DIR="$(cd "$(dirname "${BASH_SOURCE}")"; pwd)"
-cd "${THIS_DIR}"
 
 # Prepare
 VERSION="$(date +"%Y%m%d-%H%M%S")-$(git rev-parse HEAD | cut -c 1-8)"
 printf 'export const version = "%s";' "${VERSION}" > "${THIS_DIR}/version.ts"
+printf 'VERSION="%s"' "${VERSION}" > "${THIS_DIR}/../ecspresso/.env"
 
 # Build image
-docker build -t "example_ecspresso:latest" .
+docker build -t "example_ecspresso:latest" "${THIS_DIR}"
 
 # Docker login
 aws ecr-public get-login-password --region "us-east-1" |
